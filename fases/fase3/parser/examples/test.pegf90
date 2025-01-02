@@ -1,0 +1,27 @@
+{
+    contains
+
+    subroutine decirHola
+        print *, "Hola desde accion"
+    end subroutine decirHola
+}
+
+suma
+    = n1:num '+' n2:num {
+        integer :: res
+
+        call decirHola()
+
+        res = n1 + n2;
+    }
+
+num
+    = num:[0-9]+ {
+        integer :: res
+        integer :: tmp
+
+        call decirHola()
+
+        read(num, *) tmp
+        res = tmp
+    }

@@ -1,0 +1,18 @@
+regla
+    = @fizz _ @"buzz" _ @foo _ @"bar" _ @baz
+
+fizz
+    = "fizz"
+
+foo
+    = "foo"
+
+baz
+    = texto:"baz" {
+        character(len=:), allocatable :: res
+
+        print *, "Llegué a la última regla"
+        res = texto
+    }
+
+_  = [ ]+ // falta implementar caracteres escape

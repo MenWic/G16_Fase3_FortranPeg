@@ -1,0 +1,20 @@
+{
+  "name": "fortran_peg",
+  "version": "1.0.0",
+  "description": "Parser generator for Fortran using PEG and a recursive descent parser (phase 3).",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "peggy --format es -o src/parser/gramatica.js grammar/gramatica.pegjs",
+    "bootstrap": "node tools/Generator.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "peggy": "^4.2.0",
+    "typescript": "^5.7.2"
+  }
+}
