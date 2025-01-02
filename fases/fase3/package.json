@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "peggy --format es -o src/parser/gramatica.js parser/grammar/gramatica.pegjs",
-    "bootstrap": "node parser/tools/Generator.js"
+    "compile": "peggy --format es -o src/parser/gramatica.js grammar/gramatica.pegjs",
+    "bootstrap": "node tools/Generator.js"
   },
   "keywords": [],
   "author": "",
