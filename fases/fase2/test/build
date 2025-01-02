@@ -1,0 +1,3 @@
+gfortran -c parser.f90
+gfortran -c test.f90
+gfortran parser.o test.o -o test
