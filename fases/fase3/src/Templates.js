@@ -100,6 +100,30 @@ module parser
         end if
         accept = .true.
     end function acceptEOF
+    
+    function acceptSetASCIIExtended(set) result(accept)
+    character(len=1), dimension(:) :: set
+    logical :: accept
+    integer :: i, ascii_value
+
+    ascii_value = iachar(input(cursor:cursor))
+
+    if (ascii_value == 32 .or. ascii_value == 9 .or. ascii_value == 10 .or. ascii_value == 13) then
+        accept = .true.
+        cursor = cursor + 1
+        return
+    end if
+
+    accept = .false.
+    do i = 1, size(set)
+        if (ascii_value == iachar(set(i))) then
+            accept = .true.
+            cursor = cursor + 1
+            return
+        end if
+    end do
+    end function acceptSetASCIIExtended
+
 
     function consumeInput() result(substr)
         character(len=:), allocatable :: substr
@@ -163,13 +187,14 @@ export const election = (data) => `
         do i = 0, ${data.exprs.length}
             select case(i)
             ${data.exprs.map(
-                (expr, i) => `
+    (expr, i) => `
             case(${i})
                 cursor = savePoint
                 ${expr}
                 exit
+            
             `
-            )}
+).join('')}
             case default
                 call pegError()
             end select

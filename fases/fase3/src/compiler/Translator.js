@@ -263,13 +263,19 @@ export default class FortranTranslator {
             .filter((char) => char instanceof CST.Rango)
             .map((range) => range.accept(this));
         if (set.length !== 0) {
-            characterClass = [`acceptSet([${set.join(',')}])`];
+            if (set[0] === "\' \'"){
+                console.log("wokre")
+                characterClass = [`acceptSetASCIIExtended([${set.join(',')}])`]
+            } else {
+                characterClass = [`acceptSet([${set.join(',')}])`];
+            }
         }
         if (ranges.length !== 0) {
             characterClass = [...characterClass, ...ranges];
         }
         return `(${characterClass.join(' .or. ')})`; // acceptSet(['a','b','c']) .or. acceptRange('0','9') .or. acceptRange('A','Z')
     }
+
 
     /**
      * @param {CST.Rango} node
