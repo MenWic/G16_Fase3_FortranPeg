@@ -1,35 +1,31 @@
 program test
-	use parser
-	implicit none
-	character(len=100) :: filename
-	character(len=:), allocatable :: inputstr
-	integer :: u, len
-	logical :: exists
-	type(node), pointer :: stack => null() 
+    use parser
+    implicit none
 
-	if (command_argument_count() == 0) then
-		print *, "error: no input file"
-		stop
-	end if
+    character(len=100) :: filename
+    character(len=:), allocatable :: inputstr
+    integer :: len
+    logical :: exists
+    character(len=:), allocatable :: result
 
-	call get_command_argument(1, filename)
+    if (command_argument_count() == 0) then
+        print *, "error: no input file"
+        stop
+    end if
 
-	inquire(file=filename, exist=exists, size=len)
-	if (exists) then
-		open (1, file=filename, status='old', action='read', access='stream', form='unformatted')
-		allocate (character(len=len) :: inputstr)
+    call get_command_argument(1, filename)
+
+    inquire(file=filename, exist=exists, size=len)
+    if (exists) then
+        ! Abrir el archivo y leer el contenido
+        open (1, file=filename, status='old', action='read', access='stream', form='unformatted')
+        allocate (character(len=len) :: inputstr)
         read (1) inputstr
-		stack => parse(inputstr)
-		call show()
-	else
-		print *, "error: file is not present"
-		stop
-	end if
-
-	close(u)
+        print*, parse(inputstr)
+        close(1)
+    else
+        print *, "error: file is not present"
+        stop
+    end if
 
 end program test
-
-
-
-
