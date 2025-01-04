@@ -20,7 +20,7 @@ export async function generateParser(cst) {
         });
     }
 
-    /** @type {Visitor) */
+    /** @type {Visitor} */
     const translator = new FortranTranslator(ruleReturnTypes);
     return cst.accept(translator);
 }

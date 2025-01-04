@@ -211,6 +211,7 @@ export const strExpr = (data) => {
     switch (data.quantifier) {
         case '+':
             return `
+            !comentario de cuantificador positivp
                 lexemeStart = cursor
                 if (.not. ${data.expr}) cycle
                 do while (.not. cursor > len(input))
@@ -218,6 +219,25 @@ export const strExpr = (data) => {
                 end do
                 ${data.destination} = consumeInput()
             `;
+
+        case '*':
+            return `
+            !comentario de cuantificador cero o mas
+                lexemeStart = cursor
+                do while (.not. cursor > len(input))
+                    if (.not. ${data.expr}) exit
+                end do
+                ${data.destination} = consumeInput()
+            `;
+
+        case '?':
+            return `
+            !comentario de cuantificador cero o uno
+                lexemeStart = cursor
+                if (.not. ${data.expr}) cycle
+                ${data.destination} = consumeInput()
+            `;
+            
         default:
             throw new Error(
                 `'${data.quantifier}' quantifier needs implementation`
