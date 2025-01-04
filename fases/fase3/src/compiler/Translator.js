@@ -209,6 +209,7 @@ export default class FortranTranslator {
      * @this {Visitor}
      */
     visitAssertion(node) {
+
         throw new Error('Method not implemented.');
     }
 
@@ -265,7 +266,7 @@ export default class FortranTranslator {
         if (set.length !== 0) {
             if (set[0] === "\' \'"){
                 console.log("wokre")
-                characterClass = [`acceptSetASCIIExtended([${set.join(',')}])`]
+                characterClass = [`acceptSetASCIIExtended([' '])`]
             } else {
                 characterClass = [`acceptSet([${set.join(',')}])`];
             }
