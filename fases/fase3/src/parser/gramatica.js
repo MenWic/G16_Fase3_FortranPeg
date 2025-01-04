@@ -991,7 +991,7 @@ function peg$parse(input, options) {
         if (peg$silentFails === 0) { peg$fail(peg$e9); }
       }
       if (s1 !== peg$FAILED) {
-        s2 = peg$parsematch();
+        s2 = peg$parseannotated();
         if (s2 === peg$FAILED) {
           s2 = peg$parsepredicate();
         }
@@ -1016,7 +1016,7 @@ function peg$parse(input, options) {
           if (peg$silentFails === 0) { peg$fail(peg$e10); }
         }
         if (s1 !== peg$FAILED) {
-          s2 = peg$parsematch();
+          s2 = peg$parseannotated();
           if (s2 === peg$FAILED) {
             s2 = peg$parsepredicate();
           }
